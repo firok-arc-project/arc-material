@@ -1,0 +1,21 @@
+{
+  sourceFolder: './content',
+  targetFolder: './dist',
+  tags: [
+    {
+      id: 'doc',
+      name: '文档',
+      indexing: true,
+    },
+    {
+      id: 'nagging',
+      name: '碎碎念',
+      indexing: true,
+    },
+    {
+      id: 'tech',
+      name: '技术分享',
+      indexing: true,
+    },
+  ],
+}
