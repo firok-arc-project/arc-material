@@ -1,0 +1,16 @@
+{
+  "name": "deploy-workspace",
+  "version": "0.0.0",
+  "description": "",
+  "license": "",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "fetch-material": "git clone https://github.com/firok-arc-project/arc-material.git",
+    "fetch-site": "",
+
+    "build-material": "",
+    "copy-material": "",
+  }
+}
