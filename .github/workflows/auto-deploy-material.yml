@@ -41,8 +41,8 @@ jobs:
 
       - name: Deploy arc-site
         uses: cloudflare/wrangler-action@v3
-        working-directory: deploy-workspace/arc-site
         with:
+          workingDirectory: deploy-workspace/arc-site
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           wranglerVersion: "4.54.0"
