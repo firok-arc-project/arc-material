@@ -13,12 +13,10 @@ jobs:
         uses: actions/checkout@v5
 
       # 开始准备部署相关的环境
-      - name: CD deploy-workspace
-        run: cd deploy-workspace
-
       # 获取 arc-site 源码, 配置环境
       - name: Fetch and setup arc-site
         run: |
+          cd deploy-workspace
           git clone https://github.com/firok-arc-project/arc-site.git
           cd arc-site
           npm install --no-audit --no-fund
@@ -26,18 +24,24 @@ jobs:
       # 构建 arc-material 数据
       - name: Build arc-material
         run: |
+          cd deploy-workspace/arc-site
           node node_modules/@firok-arc-project/arc-centrifuge/dist/index.js ../../docs/meta-config.json5
 
       # 复制构建后的 arc-material 数据
       - name: Copy arc-material
-        run: cp -r ../../docs/dist/* public/docs
+        run: |
+          cd deploy-workspace/arc-site
+          cp -r ../../docs/dist/* public/docs
 
       # 开始构建
       - name: Build arc-site
-        run: npm run build
+        run: |
+          cd deploy-workspace/arc-site
+          npm run build
 
       - name: Deploy arc-site
         uses: cloudflare/wrangler-action@v3
+        working-directory: deploy-workspace/arc-site
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
