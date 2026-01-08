@@ -31,6 +31,7 @@ jobs:
       - name: Copy arc-material
         run: |
           cd deploy-workspace/arc-site
+          mkdir -p public/docs
           cp -r ../../docs/dist/* public/docs
 
       # 开始构建
